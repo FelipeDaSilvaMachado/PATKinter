@@ -6,6 +6,7 @@ from tkinter import *
 from tkinter import ttk
 
 # Cria a janela principal do aplicativo
+# root == raiz
 root = Tk()
 # Define o título da janela
 root.title("Pés para Metros")
@@ -19,8 +20,8 @@ def calculate(*args):
         result = int(0.3048 * value * 10000.0 + 0.5)/10000.0
         # Armazena o valor convertido na variável 'metros'
         metros.set(result)
+    # Ignora se o valor digitado não for numérico
     except ValueError:
-        # Ignora se o valor digitado não for numérico
         pass
 
 # Cria o container principal (frame) para organizar os widgets
