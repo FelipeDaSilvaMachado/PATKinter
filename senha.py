@@ -13,32 +13,38 @@ root = Tk()
 root.title("Gerador de Senhas Aleatórias")
 
 # Função que gera uma senha aleatória com caracteres especiais, letras e numeros
-
-
 def geraSenha(*args):
+    #Cria uma lista para embaralhar para senha
     listToPassword = []
 
+    #Gera 3 numeros aleatorios e insere na lista
     strAleat = ""
     for i in range(3):
         numsAleatorios = random.randint(0, 2)
         strAleat += str(numsAleatorios)
         listToPassword.append(strAleat)
 
+    #Transforma o alfabeto em uma lista e sorteia 3 letras e aumenta a lista da senha
     alfabeto = "abcdefghijklmnopqrstuvwxyz"
     alpha = list(alfabeto)
     alphaSorteado = random.sample(alpha, 3)
     listToPassword.extend(alphaSorteado)
 
+    #Transforma os caracteres especiais em uma lista e sorteia 
+    # 3 deles e aumenta a lista da senha
     specialsChars = r"!@#$%^&*()_-+=[]{}|;:'\",.<>?/`~\\"
- 
     caracteresEspeciais = list(specialsChars)
     specialChrasSamp = random.sample(caracteresEspeciais, 3)
     listToPassword.extend(specialChrasSamp)
 
+    #Pega a lista e embaralha os itens
     random.shuffle(listToPassword)
-    senhaAleatoria = "".join(listToPassword)
-    senha.set(senhaAleatoria)
 
+    #Pega a lista de senha e junta tudo em uma string novamente
+    senhaAleatoria = "".join(listToPassword)
+    #"Seta" -> Insere a senha aleatoria na 
+    # variavel senha que ira aparecer na tela
+    senha.set(senhaAleatoria)
 
 # Cria o container principal (frame) para organizar os widgets
 mainframe = ttk.Frame(root, padding="5 5 15 15")
@@ -48,13 +54,13 @@ mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-# Variável para armazenar o valor convertido para metros
+# Variável para armazenar o valor da senha gerada
 senha = StringVar()
-# Cria um rótulo (label) que exibirá o valor em metros
+# Cria um rótulo (label) que exibirá a senha
 ttk.Label(mainframe, textvariable=senha).grid(
     column=2, row=1, sticky=(W, E))
 
-# Cria um botão "Calcular" que executa a função 'calculate' ao ser clicado
+# Cria um botão "Gerar Senha" que executa a função 'geraSenha' ao ser clicado
 ttk.Button(mainframe, text="Gerar Senha", command=geraSenha).grid(
     column=2, row=2, sticky=E)
 
