@@ -21,7 +21,6 @@ def calculaIMC(*args):
     except ValueError:
         return None
 
-
 def tabelaIMC(calculaIMC):
     if calculaIMC < 18.5:
         return "Você esta abaixo do peso, procure um médico"
